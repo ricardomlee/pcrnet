@@ -6,7 +6,7 @@ workflows:
         name: "my-experiment"
         command: experiment.run_single_node
         params:
-          command: nvidia-smi
+          command: python PCRNet.py -log "log_PCRNet" -mode "train" -results "best_model"
           container: tensorflow/tensorflow:1.13.1-gpu-py3
           experimentEnv:
             EPOCHS_EVAL: 5
@@ -14,9 +14,9 @@ workflows:
             MAX_STEPS: 1000
             TRAIN_EPOCHS: 10
           machineType: p2.xlarge
-          modelPath: /artifacts
+          modelPath: /models
           modelType: Tensorflow
-          name: gradientci-sample
+          name: PCRNet-cli-config-yaml
           clusterId: clbdo1h0q
         checks: #[optional]
           tensorflow:loss:
